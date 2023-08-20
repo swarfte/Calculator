@@ -1,19 +1,14 @@
 // app for application life, BrowserWindow for creating browser window
 const { app, BrowserWindow } = require("electron");
 
-const path = require("path");
-
-const homepage = "index.html";
-let windowsWidth = 800;
-let windowsHeight = 600;
+const homepage = "./html/index.html";
+let windowsWidth = 400;
+let windowsHeight = 800;
 
 const createWindow = () => {
     const win = new BrowserWindow({
         width: windowsWidth,
         height: windowsHeight,
-        webPreferences: {
-            preload: path.join(__dirname, "preload.js"),
-        },
     });
 
     // load the html file
@@ -21,7 +16,7 @@ const createWindow = () => {
 };
 
 // when app is ready, create window
-app.whenReady().then(() => {
+app.on("ready", () => {
     createWindow();
 
     // on macOS, re-create window when dock icon is clicked

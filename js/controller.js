@@ -133,8 +133,11 @@ function calculateFactorial(expression) {
 function getResult() {
     calculate();
 
-    // move the result to the input row
-    calculatorInput.value = calculatorOutput.value;
+    // avoid copy empty output
+    if (calculatorOutput.value !== "") {
+        // move the result to the input row
+        calculatorInput.value = calculatorOutput.value;
+    }
     calculatorOutput.value = "";
 }
 

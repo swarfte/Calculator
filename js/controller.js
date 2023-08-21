@@ -1,4 +1,6 @@
 // @ts-nocheck
+
+// the input row and output row
 let calculatorInput = document.getElementById("calculator_input");
 let calculatorOutput = document.getElementById("calculator_output");
 
@@ -10,6 +12,7 @@ function addNumber(number) {
 
 function addOperator(operator) {
     calculatorInput.value += operator;
+    calculate();
 }
 
 function clearAll() {
@@ -77,19 +80,76 @@ function calculateNaturalNumber(expression) {
     return expression;
 }
 
+function factorial(num) {
+    if (num === 0 || num === 1) {
+        return 1;
+    }
+
+    let result = 1;
+    for (let i = num; i >= 1; i--) {
+        result *= i;
+    }
+
+    return result;
+}
+
+function findNumbersWithExclamation(str) {
+    let numbers = str.match(/\d+!/g);
+    if (numbers) {
+        return numbers;
+    } else {
+        return [];
+    }
+}
+
+function transferFactorialSymbol(numberList) {
+    let result = [];
+    for (const originalNumber of numberList) {
+        const num = originalNumber.split("!");
+        result.push("factorial(" + num[0] + ")");
+    }
+    return result;
+}
+
+function calculateFactorial(expression) {
+    let factorialNumbers = findNumbersWithExclamation(expression);
+    let transferFactorialNumbers = transferFactorialSymbol(factorialNumbers);
+    if (factorialNumbers.length !== 0) {
+        for (let index = 0; index < factorialNumbers.length; index++) {
+            expression = expression.replace(
+                factorialNumbers[index],
+                transferFactorialNumbers[index]
+            );
+        }
+    }
+    return expression;
+}
+
+function getResult() {
+    calculate();
+    calculatorInput.value = "";
+}
+
 function calculate() {
     let expression = calculatorInput.value;
+    const originalOutput = calculatorOutput.value;
 
     // order is important
-    expression = calculateNaturalNumber(expression);
-    expression = calculateTrigonometric(expression);
-    expression = calculateLogarithm(expression);
-    expression = calculateExponential(expression);
-    expression = calculateMultiplication(expression);
+    try {
+        expression = calculateNaturalNumber(expression);
+        expression = calculateTrigonometric(expression);
+        expression = calculateLogarithm(expression);
+        expression = calculateExponential(expression);
+        expression = calculateMultiplication(expression);
+        expression = calculateFactorial(expression);
 
-    console.log(expression);
-    let result = eval(expression);
-    result = solveFloatingPoint(result);
+        // for debug
+        //console.log(expression);
 
-    calculatorOutput.value = result;
+        let result = eval(expression);
+        result = solveFloatingPoint(result);
+        calculatorOutput.value = result;
+    } catch {
+        calculatorOutput.value = originalOutput;
+    }
 }

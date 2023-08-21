@@ -2,6 +2,8 @@
 
 A simple cross-platform calculator
 
+![alt text](https://github.com/swarfte/Calculator/blob/main/example/calculator.png)
+
 ## How to install
 
 1. <code> git clone https://github.com/swarfte/Calculator.git </code> in your folder

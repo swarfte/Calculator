@@ -36,7 +36,7 @@ const specialKey = {
 };
 document.addEventListener("keydown", (event) => {
     // for debug
-    console.log(event.key);
+    // console.log(event.key);
 
     if (event.key in normalKey) {
         addOperator(normalKey[event.key]);

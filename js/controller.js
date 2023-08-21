@@ -24,6 +24,11 @@ function deleteLastCharacter() {
     value = calculatorInput.value;
     value = String(value);
     calculatorInput.value = value.slice(0, -1);
+    if (calculatorInput.value != "") {
+        calculate();
+    } else {
+        calculatorOutput.value = "";
+    }
 }
 
 function solveFloatingPoint(number) {

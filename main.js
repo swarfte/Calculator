@@ -2,8 +2,8 @@
 const { app, BrowserWindow } = require("electron");
 
 const homepage = "./html/index.html";
-let windowsWidth = 400;
-let windowsHeight = 800;
+let windowsWidth = 800;
+let windowsHeight = 600;
 
 const createWindow = () => {
     const win = new BrowserWindow({

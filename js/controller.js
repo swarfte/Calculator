@@ -132,7 +132,10 @@ function calculateFactorial(expression) {
 
 function getResult() {
     calculate();
-    calculatorInput.value = "";
+
+    // move the result to the input row
+    calculatorInput.value = calculatorOutput.value;
+    calculatorOutput.value = "";
 }
 
 function calculate() {

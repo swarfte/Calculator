@@ -66,7 +66,7 @@ function calculateExponential(expression) {
 }
 
 function getBaseLog(x, y) {
-    return Math.log(y) / Math.log(x);
+    return solveFloatingPoint(Math.log(y) / Math.log(x));
 }
 
 function calculateLogarithm(expression) {
@@ -77,6 +77,11 @@ function calculateLogarithm(expression) {
 
 function calculateMultiplication(expression) {
     expression = expression.replace(/x/g, "*");
+    return expression;
+}
+
+function calculateDivision(expression) {
+    expression = expression.replace(/÷/g, "/");
     return expression;
 }
 
@@ -152,13 +157,13 @@ function calculate() {
         expression = calculateLogarithm(expression);
         expression = calculateExponential(expression);
         expression = calculateMultiplication(expression);
+        expression = calculateDivision(expression);
         expression = calculateFactorial(expression);
 
         // for debug
         //console.log(expression);
 
         let result = eval(expression);
-        result = solveFloatingPoint(result);
         calculatorOutput.value = result;
     } catch {
         calculatorOutput.value = originalOutput;

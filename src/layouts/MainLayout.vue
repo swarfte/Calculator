@@ -4,9 +4,11 @@
       <q-toolbar>
         <q-toolbar-title>
           <q-avatar>
-            <img src="https://cdn.quasar.dev/logo-v2/svg/logo-mono-white.svg" />
+            <img src="../assets/githubIcon.png" alt="github icon" />
           </q-avatar>
-          {{ title }}
+          <a id="title" href="https://github.com/swarfte/Calculator">
+            {{ title }}
+          </a>
         </q-toolbar-title>
       </q-toolbar>
 
@@ -34,3 +36,11 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+#title {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+}
+</style>

@@ -2,7 +2,7 @@ const routes = [
   {
     path: "/",
     name: "Index",
-    component: () => import("pages/IndexPage.vue"),
+    redirect: "/general",
   },
   {
     path: "/general",

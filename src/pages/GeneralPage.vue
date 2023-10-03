@@ -364,7 +364,7 @@ export default defineComponent({
         },
         {
           source:/ans/g,
-          target:this.historyValue
+          target:this.flexibleAns
         },
         {
           source:/log\(/g,
@@ -636,6 +636,13 @@ export default defineComponent({
 
       return result;
     },
+    flexibleAns(){
+      if (this.historyValue.includes("/")){
+        return this.fractionToDecimal(this.historyValue);
+      } else {
+        return this.historyValue;
+      }
+    }
   },
   watch: {
     /**

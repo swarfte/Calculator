@@ -38,9 +38,9 @@ npm run format
 quasar build
 ```
 
-### The real effect in Android
+### The real effect in desktop
 
-![image](https://github.com/swarfte/Calculator/blob/main/exmaple/real_effect.jpg)
+![image](https://github.com/swarfte/Calculator/blob/main/exmaple/desktop.png)
 
 ### Customize the configuration
 

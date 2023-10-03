@@ -40,7 +40,7 @@ quasar build
 
 ### The real effect in Android
 
-![image]()
+![image](https://github.com/swarfte/Calculator/blob/main/exmaple/real_effect.jpg)
 
 ### Customize the configuration
 

@@ -313,6 +313,11 @@ export default defineComponent({
       result = this.fractionToDecimal(result);
       return Number(result);
     },
+    /**
+     * used to set dynamic font size for the raw value
+     * @param {string} str
+     * @returns {number}
+    */
     dynamicFontSize(str){
       if (str.length > 25){
         return 15;

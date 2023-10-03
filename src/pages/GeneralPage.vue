@@ -305,14 +305,28 @@ export default defineComponent({
      * used to fix decimal issus
      * @param {function} func
      * @param {number} value
-     * @returns {string}
+     * @returns {number}
     */
     fixDecimalIssus(func,...value){
       let result = func(...value).toString();
       result = this.decimalToFraction(result);
       result = this.fractionToDecimal(result);
-      return result;
+      return Number(result);
     },
+    dynamicFontSize(str){
+      if (str.length > 25){
+        return 15;
+      } else if (str.length > 20){
+        return 20;
+      }else if (str.length > 15){
+        return 25;
+      }else if (str.length > 10){
+        return 30;
+      }else if (str.length > 5){
+        return 35;
+      }
+      return 40
+    }
   },
   computed: {
     /**
@@ -625,6 +639,10 @@ export default defineComponent({
     */
     rawValue() {
       try {
+        // scroll to the end of the raw value
+        const rawValueElement = document.getElementById("rawValue");
+        rawValueElement.scrollLeft = rawValueElement.scrollWidth;
+        rawValueElement.style.fontSize = this.dynamicFontSize(this.rawValue) + "px";
         this.preCalculate();
       } catch (e) {
 
@@ -663,7 +681,7 @@ class Button {
 
 <style>
 .GeneralBlock {
-  font-family: "Fira Code", monospace, sans-serif, serif;
+  font-family: "Fira Code", sans-serif, ;
 }
 
 .displayBlock {
@@ -673,7 +691,7 @@ class Button {
 
 .displayBlock input {
   text-align: right;
-  font-size: 33px;
+  font-size: 40px;
   padding: 20px 10px;
 }
 .calculatorButtons {
@@ -692,7 +710,7 @@ class Button {
 }
 
 #rawValue {
-  overflow-x: auto;
+  overflow: hidden;
 }
 
 #calculatedValue {

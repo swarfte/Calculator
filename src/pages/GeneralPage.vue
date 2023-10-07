@@ -697,8 +697,8 @@ class Button {
 }
 
 .displayBlock {
-  margin-top: 10%;
-  padding-bottom: 5%;
+  margin-top: 0%;
+  padding-bottom: 0%;
 }
 
 .displayBlock input {
@@ -707,8 +707,8 @@ class Button {
   padding: 20px 10px;
 }
 .calculatorButtons {
-  margin: 1%;
-  padding: 1%;
+  margin: 0.8%;
+  padding: 0.8%;
   font-style: bold;
 }
 #historyExpression {

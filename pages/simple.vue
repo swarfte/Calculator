@@ -23,7 +23,7 @@
 </template>
 
 <script lang="ts" setup>
-import { useSimpleKeyboard, useHandleClick } from '~/composables/keyboard';
+import { useSimpleKeyboard, useHandleClick, usePreviewExpression } from '~/composables/keyboard';
 import { setCurrentTitle } from '~/composables/title';
 import { useAnswer } from '../composables/calculate';
 const userInput = ref('')
@@ -36,6 +36,12 @@ const handleUserInput = (key: string) => {
 }
 
 const answer = useAnswer()
+
+watch(userInput, async (newInput) => {
+  if (userInput.value !== "") {
+    usePreviewExpression(userInput, output)
+  }
+})
 
 </script>
 

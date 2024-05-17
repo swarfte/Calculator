@@ -34,6 +34,5 @@ export const useCalculate = (expression: string) => {
   const parser = math.parser();
   expression = filterExpression(expression);
   const result = parser.evaluate(expression);
-  setAnswer(result);
   return math.format(result, { precision: 14 });
 };

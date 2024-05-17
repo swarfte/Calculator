@@ -113,7 +113,11 @@ export const specialKeys = [
       key: string
     ) => {
       try {
-        outputExpress.value = useCalculate(inputExpress.value);
+        // if the input value not include "ans", then calculate the expression
+        if (!inputExpress.value.includes("ans")) {
+          outputExpress.value = useCalculate(inputExpress.value);
+        }
+        setAnswer(Number(outputExpress.value));
         inputExpress.value = "ans";
       } catch (e) {
         console.error(e);
@@ -215,7 +219,7 @@ export const useHandleClick = (
   }
 };
 
-export const previewExpression = (
+export const usePreviewExpression = (
   inputExpression: Ref<string>,
   outputExpression: Ref<string>
 ) => {

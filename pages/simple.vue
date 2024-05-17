@@ -14,7 +14,8 @@
     <v-row v-for="row in keyboard" no-gutters>
       <v-col v-for="key in row" cols="3" class="pa-1">
         <v-btn rounded="pill" reverse="true" size="x-large" :key="key" @click="handleUserInput(key)"
-          :color="key === '=' ? 'success' : 'primary'" :class="key === 'AC' ? 'bg-red' : ''" block :text="key">
+          :color="key === '=' ? 'success' : 'primary'" :class="key === 'AC' ? 'bg-red' : ''" block :text="key"
+          :disabled="key === 'ans' && answer === null">
         </v-btn>
       </v-col>
     </v-row>
@@ -24,6 +25,7 @@
 <script lang="ts" setup>
 import { useSimpleKeyboard, useHandleClick } from '~/composables/keyboard';
 import { setCurrentTitle } from '~/composables/title';
+import { useAnswer } from '../composables/calculate';
 const userInput = ref('')
 const output = ref('')
 const keyboard = useSimpleKeyboard()
@@ -32,6 +34,8 @@ setCurrentTitle('Simple')
 const handleUserInput = (key: string) => {
   const result = useHandleClick(userInput, output, key)
 }
+
+const answer = useAnswer()
 
 </script>
 

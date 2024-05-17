@@ -50,7 +50,8 @@ import { useCalculate } from "./calculate";
 
 const checkNumeralOrOperator = (symbol: string) => {
   return (
-    !isNaN(Number(symbol)) || operatorKeys.map((k) => k.key).includes(symbol)
+    numeralKeys.map((k) => k.key).includes(symbol) ||
+    operatorKeys.map((k) => k.key).includes(symbol)
   );
 };
 
@@ -67,6 +68,7 @@ export const specialKeys = [
         inputExpress.value = "";
       } else {
         outputExpress.value = "";
+        setAnswer(null);
       }
     },
   },
@@ -114,6 +116,7 @@ export const specialKeys = [
         outputExpress.value = useCalculate(inputExpress.value);
         inputExpress.value = "ans";
       } catch (e) {
+        console.error(e);
         outputExpress.value = "error";
       }
     },
@@ -210,4 +213,11 @@ export const useHandleClick = (
         console.log("unknown key");
       };
   }
+};
+
+export const previewExpression = (
+  inputExpression: Ref<string>,
+  outputExpression: Ref<string>
+) => {
+  outputExpression.value = useCalculate(inputExpression.value);
 };

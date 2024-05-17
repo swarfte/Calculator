@@ -1,17 +1,25 @@
 {
-  "name": "nuxt-app",
+  "name": "calculator",
   "private": true,
   "type": "module",
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
-    "preview": "nuxt preview",
+    "preview": "npm run preview --host=192.168.111.111 --port=5000",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/eslint": "^0.3.12",
+    "@vite-pwa/nuxt": "^0.7.0",
+    "@vueuse/nuxt": "^10.9.0",
+    "mathjs": "^12.4.2",
     "nuxt": "^3.11.2",
     "vue": "^3.4.27",
-    "vue-router": "^4.3.2"
+    "vue-router": "^4.3.2",
+    "vuetify-nuxt-module": "^0.14.0"
+  },
+  "devDependencies": {
+    "@nuxtjs/google-fonts": "^3.2.0"
   }
 }

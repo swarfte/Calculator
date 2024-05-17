@@ -48,6 +48,12 @@ export const functionKeys = ["(", ")", "sqrt", "log", "ln", "exp"].map(
 
 import { useCalculate } from "./calculate";
 
+const checkNumeralOrOperator = (symbol: string) => {
+  return (
+    !isNaN(Number(symbol)) || operatorKeys.map((k) => k.key).includes(symbol)
+  );
+};
+
 export const specialKeys = [
   {
     key: "AC",
@@ -68,7 +74,25 @@ export const specialKeys = [
     key: "del",
     type: "special",
     trigger: (express: Ref<string>) => {
-      express.value = express.value.slice(0, -1);
+      // check if the previous is not a number or operator symbol
+      if (!checkNumeralOrOperator(express.value[express.value.length - 1])) {
+        // delete the previous word
+        let wordLength = 1;
+        while (
+          !checkNumeralOrOperator(
+            express.value[express.value.length - wordLength]
+          ) &&
+          wordLength < express.value.length
+        ) {
+          wordLength++;
+        }
+        express.value = express.value.slice(
+          0,
+          express.value.length - wordLength
+        );
+      } else {
+        express.value = express.value.slice(0, express.value.length - 1);
+      }
     },
   },
   {
@@ -88,6 +112,7 @@ export const specialKeys = [
     ) => {
       try {
         outputExpress.value = useCalculate(inputExpress.value);
+        inputExpress.value = "ans";
       } catch (e) {
         outputExpress.value = "error";
       }

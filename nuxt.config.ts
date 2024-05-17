@@ -8,6 +8,44 @@ export default defineNuxtConfig({
     "@nuxt/eslint",
     "@nuxtjs/google-fonts",
   ],
+  pwa: {
+    manifest: {
+      name: "Calculator",
+      short_name: "Calculator",
+      description: "This is my cross-platform calculator app",
+      theme_color: "#42f5f5",
+      icons: [
+        {
+          src: "icons/icon_64x64.png",
+          sizes: "64x64",
+          type: "image/png",
+        },
+        {
+          src: "icons/icon_144x144.png",
+          sizes: "144x144",
+          type: "image/png",
+        },
+        {
+          src: "icons/icon_192x192.png",
+          sizes: "192x192",
+          type: "image/png",
+        },
+        {
+          src: "icons/icon_512x512.png",
+          sizes: "512x512",
+          type: "image/png",
+        },
+      ],
+      lang: "en",
+    },
+    workbox: {
+      navigateFallback: "/",
+    },
+    devOptions: {
+      enabled: true,
+      type: "module",
+    },
+  },
   googleFonts: {
     families: {
       Roboto: true,

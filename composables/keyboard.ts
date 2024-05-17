@@ -48,6 +48,13 @@ export const functionKeys = ["(", ")", "sqrt", "log", "ln", "exp"].map(
 
 import { useCalculate } from "./calculate";
 
+const checkNumeralOrOperator = (symbol: string) => {
+  return (
+    numeralKeys.map((k) => k.key).includes(symbol) ||
+    operatorKeys.map((k) => k.key).includes(symbol)
+  );
+};
+
 export const specialKeys = [
   {
     key: "AC",
@@ -61,6 +68,7 @@ export const specialKeys = [
         inputExpress.value = "";
       } else {
         outputExpress.value = "";
+        setAnswer(null);
       }
     },
   },
@@ -68,7 +76,25 @@ export const specialKeys = [
     key: "del",
     type: "special",
     trigger: (express: Ref<string>) => {
-      express.value = express.value.slice(0, -1);
+      // check if the previous is not a number or operator symbol
+      if (!checkNumeralOrOperator(express.value[express.value.length - 1])) {
+        // delete the previous word
+        let wordLength = 1;
+        while (
+          !checkNumeralOrOperator(
+            express.value[express.value.length - wordLength]
+          ) &&
+          wordLength < express.value.length
+        ) {
+          wordLength++;
+        }
+        express.value = express.value.slice(
+          0,
+          express.value.length - wordLength
+        );
+      } else {
+        express.value = express.value.slice(0, express.value.length - 1);
+      }
     },
   },
   {
@@ -87,8 +113,14 @@ export const specialKeys = [
       key: string
     ) => {
       try {
-        outputExpress.value = useCalculate(inputExpress.value);
+        // if the input value not include "ans", then calculate the expression
+        if (!inputExpress.value.includes("ans")) {
+          outputExpress.value = useCalculate(inputExpress.value);
+        }
+        setAnswer(Number(outputExpress.value));
+        inputExpress.value = "ans";
       } catch (e) {
+        console.error(e);
         outputExpress.value = "error";
       }
     },
@@ -185,4 +217,11 @@ export const useHandleClick = (
         console.log("unknown key");
       };
   }
+};
+
+export const usePreviewExpression = (
+  inputExpression: Ref<string>,
+  outputExpression: Ref<string>
+) => {
+  outputExpression.value = useCalculate(inputExpression.value);
 };

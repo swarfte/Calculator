@@ -1,6 +1,6 @@
 <template>
   <v-container class="h-screen pt-10 w-md-50 " fluid>
-    <v-row class="h-40" no-gutters>
+    <v-row class="h-30" no-gutters>
     </v-row>
     <v-row no-gutters class="h-20">
       <v-col cols="12">
@@ -12,7 +12,7 @@
         </v-text-field>
       </v-col>
     </v-row>
-    <div class="h-40 py-5">
+    <div class="h-30 py-5">
       <v-row v-for="row in simpleKeyboard" :key="row" no-gutters>
         <v-col v-for="key in row" :key="key" cols="3" class="pa-1">
           <v-btn rounded="pill" reverse="true" size="x-large" :key="key" @click="handleUserInput(key)"
@@ -64,6 +64,10 @@ watch(userInput, async (newInput) => {
 
 .h-40 {
   height: 40%;
+}
+
+.h-30 {
+  height: 30%;
 }
 
 .h-20 {

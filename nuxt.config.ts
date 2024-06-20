@@ -6,14 +6,14 @@ export default defineNuxtConfig({
     "vuetify-nuxt-module",
     "@vueuse/nuxt",
     "@nuxt/eslint",
-    "@nuxtjs/google-fonts",
+    "@nuxt/fonts",
+    "@pinia/nuxt",
   ],
   pwa: {
     manifest: {
       name: "Calculator",
       short_name: "Calculator",
       description: "This is my cross-platform calculator app",
-      theme_color: "#42f5f5",
       icons: [
         {
           src: "icons/icon_64x64.png",
@@ -44,22 +44,6 @@ export default defineNuxtConfig({
     devOptions: {
       enabled: true,
       type: "module",
-    },
-  },
-  googleFonts: {
-    families: {
-      Roboto: true,
-      "Josefin+Sans": true,
-      Lato: [100, 300],
-      Raleway: {
-        wght: [100, 400],
-        ital: [100],
-      },
-      Inter: "200..700",
-      "Crimson Pro": {
-        wght: "200..900",
-        ital: "200..700",
-      },
     },
   },
 });

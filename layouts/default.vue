@@ -1,7 +1,7 @@
 <template>
   <v-layout>
     <v-app-bar app :elevation="3" rounded color="blue">
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-app-bar-title>{{ title }}</v-app-bar-title>
     </v-app-bar>
 
@@ -25,10 +25,14 @@
 </template>
 
 <script lang="ts" setup>
-import { useOption, useCurrentTitle } from '../composables/title';
+import { storeToRefs } from 'pinia'
+import { useTitleStore } from '~/stores/titleStore'
+
+const titleStore = useTitleStore()
+const { currentTitle } = storeToRefs(titleStore)
 const drawer = ref(false)
-const options = useOption()
-const title = useCurrentTitle()
+const options = titleStore.getOptions()
+const title = currentTitle
 </script>
 
 <style></style>

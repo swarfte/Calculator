@@ -5,7 +5,8 @@
 </template>
 
 <script lang="ts" setup>
-import { setCurrentTitle } from '../composables/title';
+import { useTitleStore } from '~/stores/titleStore';
+const { setCurrentTitle } = useTitleStore()
 setCurrentTitle('Advance')
 
 </script>
